@@ -129,8 +129,24 @@ def get_browserhistory() -> dict:
             _SQL = ''
             # SQL command for browsers' database table
             if browser == 'chrome':
-                _SQL = """SELECT url, title, datetime((last_visit_time/1000000)-11644473600, 'unixepoch', 'localtime') 
-                                    AS last_visit_time FROM urls ORDER BY last_visit_time DESC"""
+                # _SQL = """SELECT url, title, datetime((last_visit_time/1000000)-11644473600, 'unixepoch', 'localtime') 
+                #                     AS last_visit_time
+                #                     FROM urls ORDER BY last_visit_time DESC"""
+                 _SQL = """SELECT urls.id, urls.url, urls.title, urls.last_visit_time, urls.visit_count, visits.visit_time, visits.from_visit,
+                                  CASE (visits.transition & 255)\
+		                            WHEN 0 THEN 'User clicked a link'\
+		                            WHEN 1 THEN 'User typed the URL in the URL bar'\
+		                            WHEN 2 THEN 'Got through a suggestion in the UI'\
+		                            WHEN 3 THEN 'Content automatically loaded in a non-toplevel frame - user may not realize'\
+		                            WHEN 4 THEN 'Subframe explicitly requested by the user'\
+		                            WHEN 5 THEN 'User typed in the URL bar and selected an entry from the list - such as a search bar'\
+		                            WHEN 6 THEN 'The start page of the browser'\
+		                            WHEN 7 THEN 'A form the user has submitted values to'\
+		                            WHEN 8 THEN 'The user reloaded the page, eg by hitting the reload button or restored a session'\
+		                            WHEN 9 THEN 'URL what was generated from a replacable keyword other than the default search provider'\
+		                            WHEN 10 THEN 'Corresponds to a visit generated from a KEYWORD'\
+		                            END AS Description,\
+                                visits.visit_duration FROM urls, visits WHERE urls.id = visits.url;"""
             elif browser == 'firefox':
                 _SQL = """SELECT url, title, datetime((visit_date/1000000), 'unixepoch', 'localtime') AS visit_date 
                                     FROM moz_places INNER JOIN moz_historyvisits on moz_historyvisits.place_id = moz_places.id ORDER BY visit_date DESC"""
