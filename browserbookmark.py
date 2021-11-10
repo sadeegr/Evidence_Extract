@@ -9,7 +9,7 @@ import csv
 #     print(url.url, url.name)
     
     
-def write_browserhistory_csv() -> None:
+def write_browserbookmarks_csv() -> None:
     """It writes csv files that contain the browser history in
     the current working directory. It will writes csv files base on
     the name of browsers the program detects."""
@@ -25,4 +25,4 @@ def write_browserhistory_csv() -> None:
          print("End of data")
                 
             
-write_browserhistory_csv()
+write_browserbookmarks_csv()
