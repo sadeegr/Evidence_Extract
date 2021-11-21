@@ -25,4 +25,3 @@ def write_browserbookmarks_csv() -> None:
          print("End of data")
                 
             
-write_browserbookmarks_csv()

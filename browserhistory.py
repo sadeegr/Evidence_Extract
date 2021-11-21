@@ -193,6 +193,3 @@ def write_browserhistory_csv() -> None:
                 csv_writer.writerow(data)
 
 
-
-#execute code here
-write_browserhistory_csv()

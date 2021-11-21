@@ -107,8 +107,6 @@ def DownloadExtractEdge() -> None:
 
     
             
-write_browserdownloadhash_csv()
-DownloadExtractChrome()
-DownloadExtractEdge()
+
 
 

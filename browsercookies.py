@@ -141,6 +141,3 @@ def EdgeCookies() -> None:
             file.write("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9} \n".format(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9]))
 
     
-if __name__ == "__main__":
-    main()
-    EdgeCookies()
