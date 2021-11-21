@@ -55,7 +55,7 @@ def decrypt_data(data, key):
             # not supported
             return ""
         
-        
+    
 def main():
     # local sqlite Chrome cookie database path
     db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
@@ -81,7 +81,13 @@ def main():
     # FROM cookies
     # WHERE host_key like '%thepythoncode.com%'""")
     
-    
+    cursorG=cursor.fetchall()
+    #Write data to CSV file
+    with open('ChrommeCookies.csv', "w", encoding="utf-8") as file:
+        file.write('host_key, name, value, creation_utc, last_access_utc, expires_utc, encrypted_value \n')
+        for i in cursorG:
+            file.write("{0}, {1}, {2}, {3}, {4}, {5}, {6} \n".format(i[0], i[1], i[2], i[3], i[4], i[5], i[6]))
+
     # get the AES key
     key = get_encryption_key()
     for host_key, name, value, creation_utc, last_access_utc, expires_utc, encrypted_value in cursor.fetchall():
@@ -114,5 +120,27 @@ def main():
     db.close()
     
     
+def EdgeCookies() -> None:
+    history_db = os.path.expanduser('~')+'\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default\\Cookies'
+    c2 = sqlite3.connect(history_db)
+    cursor2 = c2.cursor()
+
+    #Extract Data
+    select_statement_cookies = "SELECT cookies.path,cookies.source_port,cookies.host_key,cookies.name,cookies.value,cookies.has_expires,cookies.priority," \
+                            "datetime(cookies.last_access_utc / 1000000 + (strftime('%s', '1601-01-01')), 'unixepoch', 'localtime')," \
+                            "datetime(cookies.creation_utc / 1000000 + (strftime('%s', '1601-01-01')), 'unixepoch', 'localtime')," \
+                            "datetime(cookies.expires_utc / 1000000 + (strftime('%s', '1601-01-01')), 'unixepoch', 'localtime')" \
+                            " FROM cookies;"
+    cursor2.execute(select_statement_cookies)
+    results = cursor2.fetchall()
+
+    #Write data to CSV file
+    with open('EdgeCookies.csv', "w", encoding="utf-8") as file:
+        file.write('path,source_port,host_key,name,value,has_expires,priority,last_access_utc,creation_utc,expires_utc\n')
+        for i in results:
+            file.write("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9} \n".format(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9]))
+
+    
 if __name__ == "__main__":
     main()
+    EdgeCookies()
