@@ -15,7 +15,6 @@ for file in files:
             dt="File:"+file+"====="+"Hash:"+hashlib.md5(data).hexdigest()
             print("pending..")
             result.append(dt)
-            break
     except:
         continue
     

