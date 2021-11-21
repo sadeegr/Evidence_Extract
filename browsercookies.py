@@ -83,7 +83,7 @@ def main():
     
     cursorG=cursor.fetchall()
     #Write data to CSV file
-    with open('ChrommeCookies.csv', "w", encoding="utf-8") as file:
+    with open('ExtractedItems/ChrommeCookies.csv', "w", encoding="utf-8") as file:
         file.write('host_key, name, value, creation_utc, last_access_utc, expires_utc, encrypted_value \n')
         for i in cursorG:
             file.write("{0}, {1}, {2}, {3}, {4}, {5}, {6} \n".format(i[0], i[1], i[2], i[3], i[4], i[5], i[6]))
@@ -135,7 +135,7 @@ def EdgeCookies() -> None:
     results = cursor2.fetchall()
 
     #Write data to CSV file
-    with open('EdgeCookies.csv', "w", encoding="utf-8") as file:
+    with open('ExtractedItems/EdgeCookies.csv', "w", encoding="utf-8") as file:
         file.write('path,source_port,host_key,name,value,has_expires,priority,last_access_utc,creation_utc,expires_utc\n')
         for i in results:
             file.write("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9} \n".format(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9]))

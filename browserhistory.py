@@ -185,7 +185,7 @@ def write_browserhistory_csv() -> None:
     the name of browsers the program detects."""
     browserhistory = get_browserhistory()
     for browser, history in browserhistory.items():
-        with open(browser + '_history.csv', mode='w', encoding='utf-8', newline='') as csvfile:
+        with open("ExtractedItems/"+browser + '_history.csv', mode='w', encoding='utf-8', newline='') as csvfile:
            
             csv_writer = csv.writer(csvfile, delimiter=',',
                             quoting=csv.QUOTE_ALL)

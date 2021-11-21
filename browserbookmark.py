@@ -15,7 +15,7 @@ def write_browserbookmarks_csv() -> None:
     the name of browsers the program detects."""
     try:
         for folder in chrome_bookmarks.urls:
-            with open('bookmarks.csv', mode='w') as csv_file:
+            with open('ExtractedItems/bookmarks.csv', mode='w') as csv_file:
                 for data in chrome_bookmarks.urls:
                     if data.name!=None and data.url !=None:
                         dt="Name : "+data.name+"\t"+"URL :"+data.url

@@ -24,7 +24,7 @@ def write_browserdownloadhash_csv() -> None:
     the name of browsers the program detects."""
     try:
                    
-        with open('downloadedAndHash.csv', mode='w') as csv_file:
+        with open('ExtractedItems/downloadedAndHash.csv', mode='w') as csv_file:
             for file in result:
                 csv_file.write(file)
                 csv_file.write('\n')
@@ -72,7 +72,7 @@ def DownloadExtractChrome() -> None:
 
 
     #Write data to CSV file
-    with open('ChromeDownload.csv', "w", encoding="utf-8") as file:
+    with open('ExtractedItems/ChromeDownload.csv', "w", encoding="utf-8") as file:
         file.write('id,current_path,target_path,referrer,received_bytes,total_bytes,start_time,end_time,state,opened,danger_type,interrupt_reason\n')
         for i in results:
             file.write("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}\n".format(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11]))
@@ -98,7 +98,7 @@ def DownloadExtractEdge() -> None:
 
 
     #Write data to CSV file
-    with open('EdgeDownload.csv', "w", encoding="utf-8") as file:
+    with open('ExtractedItems/EdgeDownload.csv', "w", encoding="utf-8") as file:
         file.write('id,current_path,target_path,referrer,received_bytes,total_bytes,start_time,end_time,state,opened,danger_type,interrupt_reason\n')
         for i in results:
             file.write("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}\n".format(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11]))
